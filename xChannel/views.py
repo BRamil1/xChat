@@ -1,3 +1,5 @@
 from django.shortcuts import render
 
-# Create your views here.
+
+def channel(request):
+    return render(request, "xChannel/xChannel.html")

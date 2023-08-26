@@ -3,5 +3,5 @@ from xChannel import views
 
 
 urlpatterns = [
-    #path('home/', views.home, name='home'),
+    path('', views.channel, name='xChannel'),
 ]
