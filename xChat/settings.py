@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'account',
     'base',
     'xChannel',
+    'API',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -127,3 +129,8 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_URL = 'login_user'
+
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10
+}

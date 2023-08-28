@@ -22,4 +22,5 @@ urlpatterns = [
     path('account/', include('account.urls'), name='account'),
     path('channel/', include('xChannel.urls'), name='xChannel'),
     path('admin/', admin.site.urls),
+    path('api/', include('API.urls'), name='xChannel'),
 ]

@@ -6,11 +6,11 @@
     <title>Title</title>
 </head>
 <body>
-{% block base-title %}- xChannel{% endblock %}
+{% block base-title %}- Messages{% endblock %}
 {% block content %}
     <div class="row justify-content-center mt-5">
         <div class="col-md-5">
-            <h2>xChannel</h2>
+            <h2>Messages</h2>
         </div>
     </div>
     <div class="row justify-content-center mt-5">
@@ -25,7 +25,8 @@
                         </div>
                     {% endfor %}
                 {% else %}
-                    <p>There are no messages on the server, write?</p>
+                    <p>You don't have any messages</p>
+                    <a role="button" class="btn btn-primary btn-lg" href="{% url 'xChannel' %}">xChannel</a>
                 {% endif %}
             </div>
         </div>

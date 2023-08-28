@@ -6,26 +6,47 @@
     <title>Title</title>
 </head>
 <body>
+{% block base-title %}- Login{% endblock %}
 {% block content %}
-    <h1>Login</h1>
-    <form method="POST">
-        {% csrf_token %}
-        <div class="form-group">
-            <label for="username">Username</label>
-            <input type="text" name="username" class="form-control" id="username">
+        <div class="row justify-content-center mt-5">
+        <div class="col-md-5">
+            <h2>Login</h2>
         </div>
-        <div class="row justify-content-center mt-3">
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" name="password" class="form-control" id="password">
+    </div>
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-5">
+            {% if error %}
+                <div class="alert alert-danger" role="alert">
+                    {{ error }}
+                </div>
+            {% endif %}
+            <div class="alert alert-primary" role="alert">
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" name="username" class="form-control" id="username">
+                    </div>
+                    <div class="row justify-content-center mt-3">
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" name="password" class="form-control" id="password">
+                        </div>
+                    </div>
+                        <div class="row justify-content-center mt-3">
+                            <div class="col-lg-3 d-flex flex-column justify-content-between">
+                                <button type="submit" class="btn btn-primary">Login</button>
+                            </div>
+                        </div>
+                </form>
+            </div>
+            <div class="text-center">
+                <div class="alert alert-info" role="alert">
+                    Need an account? <a href="{% url 'signup_user' %}">Sign Up here</a>
+                </div>
             </div>
         </div>
-        <div class="row justify-content-center mt-3">
-            <div class="col-lg-3 d-flex flex-column justify-content-between">
-                <button type="submit" class="btn btn-primary">Login</button>
-            </div>
-        </div>
-    </form>
+    </div>
 {% endblock %}
 </body>
 </html>
