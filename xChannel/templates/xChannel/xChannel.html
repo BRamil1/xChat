@@ -18,7 +18,7 @@
             <div class="alert alert-info" role="alert">
                 {% if messages is not None %}
                     {% for message in messages %}
-                        <div class="alert alert-warning" role="alert">
+                        <div class="alert {% if message.user.username == request.user.username %}alert-success{% else %}alert-warning{% endif %}" role="alert">
                             <h6>{{ message.user.username }}</h6>
                             <p>{{ message.text }}</p>
                             <p><i>{{ message.date_creation }}</i></p>
@@ -27,6 +27,20 @@
                 {% else %}
                     <p>There are no messages on the server, write?</p>
                 {% endif %}
+                <form id="create" method="POST" action="{% url 'create' %}">
+                    {% csrf_token %}
+                    <div class="row justify-content-center mt-2">
+                        <div class="form-group">
+                            <label for="text">Messages</label>
+                            <textarea name="text" class="form-control" id="text"></textarea>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center mt-3">
+                        <div class="col-lg-3 d-flex flex-column justify-content-between">
+                            <button type="submit" class="btn btn-primary">Send</button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

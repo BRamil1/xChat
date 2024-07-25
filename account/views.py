@@ -31,7 +31,7 @@ def signup_user(request):
     if request.method == "GET":
         return render(request, "account/signup_user.html")
     else:
-        if request.POST["password1"] is None:
+        if request.POST["password1"] is not None:
             if request.POST["password1"] == request.POST["password2"]:
                 try:
                     user = User.objects.create_user(request.POST["username"], password=request.POST["password1"])
