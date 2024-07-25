@@ -1,13 +1,9 @@
 from django.shortcuts import render
 
 
-def home(request):
-    return render(request, "base/home.html")
+def index(request):
+    return render(request, "main/index.html")
 
 
 def author(request):
-    return render(request, "base/author.html")
-
-
-def test_404(request):
-    return render(request, "base/404.html")
+    return render(request, "main/author.html")
