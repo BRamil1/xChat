@@ -7,31 +7,34 @@ from django.utils.datastructures import MultiValueDictKeyError
 
 
 @login_required
-def account(request):
+def account_settings(request):
+    """main page of account settings"""
     return render(request, "account/account.html")
 
 
-def login_user(request):
+def login_func(request):
+    """user authorization"""
     if request.method == "GET":
         return render(request, "account/login_user.html")
     else:
         user = authenticate(request, username=request.POST["username"], password=request.POST["password"])
-        if user is None:
-            return render(request, "account/login_user.html",
-                          {"error": "Username or password does not exist or does not match"})
-        else:
+        if user is not None:
             login(request, user)
             try:
                 return redirect(request.GET["next"])
             except MultiValueDictKeyError:
                 return redirect("account")
+        else:
+            return render(request, "account/login_user.html",
+                          {"error": "Username or password does not exist or does not match"})
 
 
-def signup_user(request):
+def signup_func(request):
+    """user registration"""
     if request.method == "GET":
         return render(request, "account/signup_user.html")
     else:
-        if request.POST["password1"] is None:
+        if request.POST["password1"] is None and request.POST["password2"] is None:
             if request.POST["password1"] == request.POST["password2"]:
                 try:
                     user = User.objects.create_user(request.POST["username"], password=request.POST["password1"])
@@ -51,8 +54,10 @@ def signup_user(request):
             return render(request, "account/signup_user.html",
                           {"error": "Password not entered"})
 
+
 @login_required
 def logout_user(request):
+    """user logout"""
     if request.method == "POST":
         logout(request)
         return redirect("home")
