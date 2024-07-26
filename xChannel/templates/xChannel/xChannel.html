@@ -1,12 +1,6 @@
 <!DOCTYPE html>
 {% extends 'main/main.html' %}
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-{% block base-title %}- xChannel{% endblock %}
+{% block base-title %}xChannel{% endblock %}
 {% block content %}
     <div class="row justify-content-center mt-5">
         <div class="col-md-5">
@@ -18,7 +12,7 @@
             <div class="alert alert-info" role="alert">
                 {% if messages %}
                     {% for message in messages %}
-                        <div class="alert alert-warning" role="alert">
+                        <div class="alert alert-success" role="alert">
                             <h6>{{ message.user.username }}</h6>
                             <p>{{ message.text }}</p>
                             <p><i>{{ message.date_creation }}</i></p>
@@ -45,5 +39,3 @@
         </div>
     </div>
 {% endblock %}
-</body>
-</html>

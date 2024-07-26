@@ -11,7 +11,7 @@ from rest_framework.decorators import api_view
 
 @api_view(['GET', 'POST'])
 @csrf_exempt
-def message_list(request, format=None):
+def message_list(request):
     if request.method == 'GET':
         messages = Message.objects.all()
         serializer = MessageSerializer(messages, many=True)
@@ -27,7 +27,7 @@ def message_list(request, format=None):
 
 
 @csrf_exempt
-def message_detail(request, pk, format=None):
+def message_detail(request, pk):
     try:
         messages = Message.objects.get(pk=pk)
     except Message.DoesNotExist:
@@ -52,7 +52,7 @@ def message_detail(request, pk, format=None):
 
 @api_view(['GET', 'POST'])
 @csrf_exempt
-def user_list(request, format=None):
+def user_list(request):
     if request.method == 'GET':
         users = User.objects.all()
         serializer = UserSerializer(users, many=True)
@@ -69,7 +69,7 @@ def user_list(request, format=None):
 
 @api_view(['GET'])
 @csrf_exempt
-def user_detail(request, pk, format=None):
+def user_detail(request, pk):
     try:
         users = User.objects.get(pk=pk)
     except Message.DoesNotExist:
