@@ -12,9 +12,3 @@ class MessageUpdateForm(ModelForm):
     class Meta:
         model = Message
         fields = ["text", "image"]
-
-
-class MessageDeleteForm(ModelForm):
-    class Meta:
-        model = Message
-        fields = ["id"]

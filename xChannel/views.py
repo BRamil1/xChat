@@ -1,35 +1,38 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from .models import Message
-from .forms import MessageCreateForm, MessageUpdateForm, MessageDeleteForm
+from .forms import MessageCreateForm, MessageUpdateForm
 
 
+@login_required
 def channel(request):
     """shows all notifications"""
     messages = Message.objects.filter(is_show=False)
     return render(request, "xChannel/xChannel.html", {"messages": messages})
 
 
+@login_required
 def my_messages(request):
     """shows your messages"""
     messages = Message.objects.filter(user=request.user, is_show=False).order_by("-date_creation")
     return render(request, "xChannel/my_messages.html", {"messages": messages})
 
 
+@login_required
 def create(request):
     """create a message"""
     if request.method == "POST":
-        try:
-            form = MessageCreateForm(request.POST)
-            new_message = form.save(commit=False)
-            new_message.user = request.user
-            new_message.save()
-            return redirect("xChannel")
-        except ValueError:
-            return redirect("xChannel")
+        form = MessageCreateForm(request.POST)
+        if form.is_valid():
+            message = form.save(commit=False)
+            message.user = request.user
+            message.save()
+        return redirect("xChannel")
     else:
         return redirect("xChannel")
 
 
+@login_required
 def update(request):
     if request.method == "POST":
         form = MessageUpdateForm(request.POST, instance=request.user)
@@ -43,28 +46,27 @@ def update(request):
         return redirect("xChannel")
 
 
-def delete(request):
+@login_required
+def delete(request, id_msg):
     """delete a message"""
     if request.method == "POST":
-        try:
-            form = MessageDeleteForm(request.POST)
-            message = Message.objects.filter(user=request.user, id=form.message.id)
+        message = Message.objects.get(id=id_msg)
+        if message.user.id == request.user.id:
             message.is_show = True
             message.save()
-            return redirect("xChannel")
-        except ValueError:
-            return redirect("xChannel")
+        return redirect("my_messages")
     else:
-        return redirect("xChannel")
+        return redirect("my_messages")
 
 
+@login_required
 def delete_all(request):
     """delete all messages"""
     if request.method == "POST":
         messages = Message.objects.filter(user=request.user)
         for message in messages:
             message.is_show = True
-        messages.save()
-        return redirect("xChannel")
+            message.save()
+        return redirect("account")
     else:
-        return redirect("xChannel")
+        return redirect("account")

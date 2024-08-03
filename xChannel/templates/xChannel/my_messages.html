@@ -16,6 +16,12 @@
                             <h6>{{ message.user.username }}</h6>
                             <p>{{ message.text }}</p>
                             <p><i>{{ message.date_creation }}</i></p>
+                            <form method="post" action="{% url 'delete' message.id %}">
+                                {% csrf_token %}
+                                <div class="col-lg-3 d-flex flex-column justify-content-between">
+                                    <button type="submit" id="{{ message }}" name="{{ message }}" class="btn btn-danger">Delete</button>
+                                </div>
+                            </form>
                         </div>
                     {% endfor %}
                 {% else %}
