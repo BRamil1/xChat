@@ -15,66 +15,54 @@
     <div class="container-fluid">
         <div class="container-fluid">
             <a class="navbar-brand" href="{% url 'home' %}">
-                <img src="{% static '/images/xChat.ico' %}" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+                <img src="{% static '/images/xChat.ico' %}" alt="Logo" width="40" height="34" class="d-inline-block align-text-top">
                 xChat
             </a>
         </div>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-            </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav nav-underline me-auto mb-2 mb-lg-0">
+            <ul class="navbar-nav {% if user.is_authenticated %}nav-underline{% endif %}">
                 <li class="nav-item">
-                    <a class="nav-link{% block nav-active %}{% endblock %}" aria-current="page" href="{% url 'home' %}">Home</a>
+                    <a class="nav-link" aria-current="page" href="{% url 'home' %}">Home</a>
                 </li>
             {% if user.is_authenticated %}
                 <li class="nav-item">
-                    <a class="nav-link{% block list-active %}{% endblock %}" href="{% url 'xChannel' %}">xChannel</a>
+                    <a class="nav-link" aria-current="page" href="{% url 'xChannel' %}">xChannel</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link{% block completes-active %}{% endblock %}" href="{% url 'my_messages' %}">Messages</a>
+                    <a class="nav-link text-nowrap" aria-current="page" href="{% url 'my_messages' %}">My Messages</a>
                 </li>
             {% endif %}
-            <li class="nav-item">
-                <a class="nav-link{% block author-active %}{% endblock %}" href="{% url 'author' %}">Author</a>
-            </li>
-            {% if user.is_authenticated %}
-                <div class="btn-group drops-tart">
-                    <button type="button" class="btn btn-warning dropdown-toggle mb-2" data-bs-toggle="dropdown" aria-expanded="false">
-                    Menu
-                    </button>
-                    <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="{% url 'account' %}">Account</a></li>
-                    {% if user.username == 'admin' %}<li><a class="dropdown-item" href="/admin">Admin</a></li>{% endif %}
-                    <li><hr class="dropdown-divider"></li>
-                    <li>
-                        <form action="{% url 'logout_user' %}" method="post" class="dropdown-item">
-                            {% csrf_token %}
-                            <a onclick="this.parentNode.submit();return false;">Logout</a>
-                        </form>
-                    </li>
-                </ul>
-            </div>
-            {% else %}
-                <li>
-                    <form class="container-fluid justify-content-start">
-                        <a href="{% url 'login_user' %}">
-                            <button class="btn btn-primary" type="button">Login</button>
-                        </a>
-                    </form>
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="{% url 'about' %}">About</a>
                 </li>
-                <li>
-                    <form class="container-fluid justify-content-start">
-                        <a href="{% url 'signup_user' %}">
-                            <button class="btn btn-success mb-2" type="button">SignUp</button>
-                        </a>
-                    </form>
+            {% if user.is_authenticated %}
+                <div class="btn-group dropdown-menu-left">
+                    <button type="button" class="btn btn-warning dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Menu</button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{% url 'account' %}">Account</a></li>
+                        {% if request.user.is_superuser %}<li><a class="dropdown-item" href="/admin">Admin</a></li>{% endif %}
+                        <li><hr class="dropdown-divider"></li>
+                        <li>
+                            <form action="{% url 'logout_user' %}" method="post" class="dropdown-item">
+                                {% csrf_token %}
+                                <a onclick="this.parentNode.submit();return false;">Logout</a>
+                            </form>
+                        </li>
+                    </ul>
+                </div>
+            {% else %}
+                <li class="nav-item container-fluid">
+                    <a class="btn btn-primary" aria-current="page" href="{% url 'login_user' %}">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="btn btn-success text-nowrap" aria-current="page" href="{% url 'signup_user' %}">Sign Up</a>
                 </li>
             {% endif %}
             </ul>
         </div>
     </div>
 </nav>
+
 
 {% block content %}{% endblock %}
 

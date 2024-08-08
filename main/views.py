@@ -5,5 +5,5 @@ def index(request):
     return render(request, "main/index.html")
 
 
-def author(request):
-    return render(request, "main/author.html")
+def about(request):
+    return render(request, "main/about.html")

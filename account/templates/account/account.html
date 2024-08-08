@@ -14,9 +14,7 @@
                     <div class="row justify-content-center">
                         <form method="post" action="{% url 'delete_all' %}">
                             {% csrf_token %}
-                            <div class="col-lg-6 d-flex flex-column justify-content-between">
-                                <button type="submit"  class="btn btn-danger">Delete all messages </button>
-                            </div>
+                            <button type="submit"  class="btn btn-danger">Delete all messages </button>
                         </form>
                     </div>
                 </div>
