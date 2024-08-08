@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+import config
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,12 +22,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-23n#=6*_hxqd)3$=z_5i7vi)g(+a1)=bspwr=))t*b_0%rr#09'
+SECRET_KEY = config.settings.SECRET_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config.settings.DEBUG
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = config.settings.ALLOWED_HOSTS
 
 
 # Application definition
@@ -82,7 +84,7 @@ WSGI_APPLICATION = 'xChat.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': BASE_DIR / config.settings.database_name,
     }
 }
 

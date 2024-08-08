@@ -1,3 +1,5 @@
 django
 djangorestframework
 pillow
+pydantic
+pydantic_settings

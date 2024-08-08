@@ -175,3 +175,5 @@ cython_debug/
 #.idea/
 
 !/xChannel/migrations/
+/xChannel/migrations/0002_message_is_show.py
+/.config.env
