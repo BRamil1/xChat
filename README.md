@@ -7,7 +7,7 @@ This is a small messaging website written in Django
 - [ ] Finalize the API
 - [ ] Add the ability to work with many channels and not just one
 - [ ] Add backward scrolling instead of normal scrolling
-- [ ] To re-suck the front, preferably with a normal design
+- [ ] Remake the "frontage", preferably with a normal design
 - [ ] Cover the entire project with tests and annotation types
 - [x] Finalize the CI/CD
 
