@@ -9,7 +9,7 @@ This is a small messaging website written in Django
 - [ ] Add backward scrolling instead of normal scrolling
 - [ ] To re-suck the front, preferably with a normal design
 - [ ] Cover the entire project with tests and annotation types
-- [ ] Finalize the CI/CD
+- [x] Finalize the CI/CD
 
 ### Installation
 In the future, I'll add a post, until you can install all the dependencies from `requirements.txt` via pip and run

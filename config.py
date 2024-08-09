@@ -9,7 +9,6 @@ class Settings(BaseSettings):
 
     TEST_login: str = "TEST"
     TEST_password: str = "<PASSWORD>"
-    TEST_url: str = "http://127.0.0.1:8000"
 
     model_config = SettingsConfigDict(env_file=".config.env")
 
