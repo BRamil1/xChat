@@ -13,8 +13,8 @@ class XChannelTest(TestCase):
     def setUp(self):
         self.user = User.objects.create_user(username=settings.TEST_login, password=settings.TEST_password)
         self.user.save()
-        self.message1 = Message.objects.create(user=self.user, text='Hello World!')
-        self.message2 = Message.objects.create(user=self.user, text='Hello Ukraine!')
+        self.message1 = Message.objects.create(user=self.user, text='Hello World!', is_show=False)
+        self.message2 = Message.objects.create(user=self.user, text='Hello Ukraine!', is_show=False)
         self.message1.save()
         self.message2.save()
 
