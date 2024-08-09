@@ -2,7 +2,9 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 class Settings(BaseSettings):
-    database_name: str = "db.sqlite3"
+    database_name: str | None = None
+    database_engime: str | None = None
+
     SECRET_KEY: str = "TEST_KEY"
     DEBUG: bool = True
     ALLOWED_HOSTS: list[str] = []

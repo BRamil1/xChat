@@ -61,8 +61,7 @@ ROOT_URLCONF = 'xChat.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates']
-        ,
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -84,10 +83,9 @@ WSGI_APPLICATION = 'xChat.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / config.settings.database_name,
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -136,3 +134,8 @@ REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 10
 }
+
+if config.settings.database_engime:
+    DATABASES['default']['ENGINE'] = config.settings.database_engime
+if config.settings.database_name:
+    DATABASES['default']['NAME'] = config.settings.database_name
