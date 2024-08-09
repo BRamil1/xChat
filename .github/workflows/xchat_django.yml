@@ -1,4 +1,4 @@
-name: xChat Django CI
+name: xChat Django ubuntu CI
 
 on:
   push:
@@ -13,7 +13,7 @@ jobs:
     strategy:
       max-parallel: 4
       matrix:
-        python-version: [1.12.4]
+        python-version: ["1.12"]
 
     steps:
     - uses: actions/checkout@v4
