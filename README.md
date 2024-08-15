@@ -10,6 +10,7 @@ This is a small messaging website written in Django
 - [ ] Remake the "frontage", preferably with a normal design
 - [ ] Cover the entire project with tests and annotation types
 - [x] Finalize the CI/CD
+- [ ] Edit messages
 
 ### Installation
 In the future, I'll add a post, until you can install all the dependencies from `requirements.txt` via pip and run
